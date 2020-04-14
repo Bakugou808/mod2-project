@@ -1,0 +1,43 @@
+<h1>Strain Profile</h1>
+<br>
+<br>
+<br>
+<h2> 
+    <ul>
+        <li>
+            <%= strain.name %>
+            <br>
+            <br>
+            Type: <%= strain.genus.capitalize %>
+            <br>
+            <br>
+            Effects: 
+            <br>
+            <%= effects[0] %>
+            <br>
+            <%= effects[1] %>
+            <br>
+            <%= effects[2] %>
+            <br>
+            <br>
+            <br>
+            Flavors: 
+            <br><%= strain.flavors %>
+            <br>
+            <br>
+            Chemical Profile: 
+            <br>
+            <br>
+                <% strain.lab_results[0].terps.sort.each do |terp, val| %>
+                    <%= "#{terp.capitalize}: #{val}" %>
+                    <br>
+                <% end %>                
+                <br>
+                <br>
+                <br>
+            <br>
+            <br>
+            <%= strain.description %>
+        </li>
+    </ul>
+</h2>

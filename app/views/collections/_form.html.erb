@@ -1,0 +1,9 @@
+<%= form_for collection do |f| %>
+    <%= f.label "User" %>
+    <%= f.collection_select :user_id, User.all, :id, :username %>
+    <br>
+    <br>
+    <%= f.label "Strain Name " %>
+    <%= f.collection_select :strain_id, Strain.all, :id, :name %>
+    <%= f.submit %>
+<% end %>

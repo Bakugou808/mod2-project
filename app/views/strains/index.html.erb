@@ -1,0 +1,12 @@
+<h1>All Strains In Database</h1>
+<br>
+<br>
+<br>
+<ul>
+    <% @strains.each do |strain| %>
+        <li>
+            <%= link_to strain.name, strain %>
+            <%= strain.id %>
+        </li>
+    <% end %>
+</ul>

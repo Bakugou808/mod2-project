@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         end 
     end 
 
-    def show 
+    def show  
     end 
 
     def edit 
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
     def destroy
         @user.destroy 
-        redirect_to strains_path 
+        redirect_to login_path 
     end 
 
     private 

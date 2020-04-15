@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
     before_action :set_collection, only: [:index, :show, :edit, :update, :destroy]
     before_action :redirect_user
     def index
-         
+         @users_collection = current_user.collections 
     end
 
     def new
@@ -18,6 +18,23 @@ class CollectionsController < ApplicationController
             render :new 
         end 
     end 
+
+    def add_to_collection
+        byebug
+        @strain = Strain.find(params[:strain_id])
+        @user = current_user 
+        @collection = Collection.new(user_id: @user.id, strain_id: @strain.id)
+        if @collection
+            @collection.save 
+            redirect_to collection_path(@collection)
+        else 
+            redirect_to incompleted_path
+        end
+    end
+
+    def incompleted 
+
+    end
 
     def show
         @strain = Strain.find(@collection.strain_id)

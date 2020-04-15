@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   resources :notes
 
   get "/search" => "pages#search", :as => "search_page"
-  get "/login", to: "auth#new"
+  get "/login", to: "auth#new", :as => "login"
   post "/login", to: "auth#create"
+  post "/logout", to: "auth#logout", :as => "logout"
+  get "/deny", to: "auth#deny", :as => "deny"
+  post "/add_to_collections", to: "collections#add_to_collection", :as => "add_to_collections"
+  get "/incompleted", to: "collections#incompleted", :as => "incompleted"
   
 end

@@ -6,19 +6,31 @@ class AuthController < ApplicationController
 
     #similar to create -> takes data from our login page and verifies data
     def create 
-        # @user = User.find_by(username: params[:auth][:username])
         @user = User.find_by(username: params[:auth][:username])
         
-        return head(:forbidden) unless @user.authenticate(params[:auth][:password])
-        session[:user_id] = @user.id
-        redirect_to @user 
-        # if @user
-        #     session[:user_id] = @user.id
-        #     redirect_to @user  
-        # else
-        #     render :new 
-        # end
+        if @user
+            @user.authenticate(params[:auth][:password])
+            session[:user_id] = @user.id
+            redirect_to @user 
+        else 
+            redirect_to deny_path
+        end 
+            # return head(:forbidden) 
+        #     unless @user.authenticate(params[:auth][:password])
+        # session[:user_id] = @user.id
+        # redirect_to @user 
+
     end 
+
+    def deny
+    end 
+
+    def logout
+        session.delete :user_id 
+        redirect_to strains_path
+    end 
+
+
 
 
   

@@ -5,6 +5,7 @@ class LabResult < ApplicationRecord
         results = self.to_hash(self.chem_profile)
     end
 
+    #give credit to http://billpatrianakos.me/blog/2015/05/31/turn-a-string-into-a-hash-with-string-dot-to-hash-in-ruby/
     def to_hash(arr_sep=', :', key_sep='=>', results)
         
         results.chop!

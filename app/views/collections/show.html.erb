@@ -1,7 +1,8 @@
-<h2><%= @user.username %>
+<h2><%= link_to @user.username, @user %>
 <br>
 <%= render partial: '/strains/profile', locals:  {strain: @strain, effects: @strain.effects.split("||")}%>
-<br>
-<br>
-<%= %>
+<%= button_to "Edit Collection", edit_collection_path(@collection), method: :get %>
 <%= button_to "Delete Collection", @collection, method: :delete, data: { confirm: "Delete Collection?" } %>
+<br>
+<br>
+<%= render 'users/search'%>

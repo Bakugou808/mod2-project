@@ -1,5 +1,7 @@
 class Strain < ApplicationRecord
     has_many :lab_results
+    has_many :collections 
+    has_many :users, through: :collections
 
     def self.list_of_strain_names
         api_key = "l7yuhjl"
@@ -9,5 +11,7 @@ class Strain < ApplicationRecord
         # hash_of_name_groups = list_of_strains.group_by { |name| name[0] } 
     end 
 
+
     
+
 end

@@ -1,5 +1,10 @@
 class CollectionsController < ApplicationController
-    before_action :set_collection, only: [:show, :edit, :update, :destroy]
+    before_action :set_collection, only: [:index, :show, :edit, :update, :destroy]
+    before_action :redirect_user
+    def index
+         
+    end
+
     def new
         @collection = Collection.new 
     end 
@@ -23,6 +28,12 @@ class CollectionsController < ApplicationController
     end 
 
     def update 
+        if @collection.update(collection_params)
+            redirect_to @collection
+        else 
+            flash[:error_messages] = @collection.errors.full_messages 
+            render :edit 
+        end 
     end 
 
     def destroy 
@@ -39,4 +50,6 @@ class CollectionsController < ApplicationController
     def collection_params
         params.require(:collection).permit(:user_id, :strain_id)
     end
+
+
 end

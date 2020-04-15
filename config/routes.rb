@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
-  resources :notes
-  resources :collections
+
   resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get "/signup", to: "users#new", as: "signup"
+
+
+
   resources :strains, only: [:index, :show]
+  root to:"strains#index"
+  get "collections/homepage", to: "collections#index", as: "homepage"
+  resources :collections, only: [:new, :create, :show, :edit, :update, :delete]
+  resources :notes
+
+  get "/search" => "pages#search", :as => "search_page"
+  get "/login", to: "auth#new"
+  post "/login", to: "auth#create"
+  
 end

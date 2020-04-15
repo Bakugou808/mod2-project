@@ -8,7 +8,9 @@
 require_relative '../app/data/api_communications.rb'
 
 
-
+Note.delete_all 
+User.delete_all 
+Collection.delete_all 
 LabResult.delete_all
 Strain.delete_all 
 
@@ -38,7 +40,11 @@ end
 # fill in labresults table
 flower_list.each do |strain| 
     if !LabResult.find_by(strain_id: Strain.find_by(name: strain[:sample_name]).id)
-        LabResult.create(strain_id: Strain.find_by(name: strain[:sample_name]).id, name: strain[:sample_name], chem_profile: strain.select{|terp, val| val.class == Float && val > 0.0000})
+        strain_id = Strain.find_by(name: strain[:sample_name]).id
+        name = strain[:sample_name]
+        chem_profile = strain.select{|terp, val| val.class == Float && val > 0.0000}
+        
+        LabResult.create(strain_id: strain_id, name: name, chem_profile: chem_profile)
     end 
 end 
 

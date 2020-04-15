@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_055746) do
+ActiveRecord::Schema.define(version: 2020_04_14_222235) do
 
   create_table "collections", force: :cascade do |t|
-    t.string "user_id"
-    t.string "strain_id"
+    t.integer "user_id"
+    t.integer "strain_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "lab_results", force: :cascade do |t|
-    t.string "strain_id"
+    t.integer "strain_id"
     t.string "name"
     t.string "chem_profile"
     t.datetime "created_at", precision: 6, null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_055746) do
     t.string "favorites"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "password_digest"
   end
 
 end

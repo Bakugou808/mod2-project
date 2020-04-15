@@ -1,8 +1,8 @@
 class CreateCollections < ActiveRecord::Migration[6.0]
   def change
     create_table :collections do |t|
-      t.string :user_id
-      t.string :strain_id
+      t.integer :user_id
+      t.integer :strain_id
 
       t.timestamps
     end

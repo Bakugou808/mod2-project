@@ -1,18 +1,18 @@
 <h2><%= link_to @user.username, @user %>
 <br>
-<%= button_to "Add New Note?", new_note_path(collection_id: @collection), method: :get %>
+<br>
+<br>
+<h6>
+<%= button_to "Add New Note", new_note_path(collection_id: @collection), method: :get %>
 <%= button_to "Edit Collection", edit_collection_path(@collection), method: :get %>
 <%= button_to "Delete Collection", @collection, method: :delete, data: { confirm: "Delete Collection?" } %>
+</h6>
 <br>
 <%= render partial: '/strains/profile', locals:  {strain: @strain, effects: @strain.effects.split("||")}%>
 
 
-<% @collection.notes.each do |note| %>
-    Vendor: <%= note.vendor %><br>
-    Rating: <%= note.rating %><br>
-    Date: <%= note.date %><br>
-    <%= link_to "Note: ", note_path(note) %><%= note.note %><br>
-    
+<% if !@collection.notes.empty? %>
+    <%= render partial: 'notes/notes', locals: {collection: @collection} %>
 <% end %>
 
 

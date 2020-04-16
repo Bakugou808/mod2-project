@@ -1,5 +1,13 @@
-<% if list.class == Array %>
-    <% list.each do |item| %>
+<% if lists.class == String %>
+    <br>
+    <br>
+    <br>
+   <%= lists %>
+
+<% else %>
+   
+    <% lists.each do |item| %>
+
         <%= link_to item.name, collection_path(item.collections[0].id) %>
         <br>
         <%= item.flavors %>
@@ -10,10 +18,5 @@
         <% end %>
         <br>
     <% end %>
-<% else %>
-    <br>
-    <br>
-    <br>
-
-    <%= list %>
+    
 <% end %>

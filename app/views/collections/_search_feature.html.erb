@@ -1,0 +1,33 @@
+<h2>Filter Through Collection<h2>
+
+<h2>
+
+<%= form_tag results_path do %>
+    <%= label_tag "Select Genus" %>
+    <br>
+    <br>
+    <% genusi.each do |genus| %>
+        <%= check_box_tag "genus[]", genus %><%= genus.capitalize %>
+    <% end %>
+    <br>
+    <br>
+    <%= label_tag "Select Flavors" %>
+    <br>
+    <br>
+    <% flavors.each do |flavor| %>
+        <%= check_box_tag "flavors[]", flavor %><%= flavor %>
+    <% end %>
+    <br>
+    <br>
+    <%= label_tag "Select Effects" %>
+    <br>
+    <br>
+    <% effects.each do |effect| %>
+        <%= check_box_tag "effects[]", effect %><%= effect %>
+    <% end %>
+    <br>
+    <%= submit_tag "Search Collections" %>
+    
+<% end %>
+
+</h2>

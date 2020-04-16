@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   get "collections/medicinal", to: "collections#medicinal", :as => "medicinal"
   get "collections/flavors", to: "collections#flavors", :as => "flavor"
   get "collections/view_all", to: "collections#view_all", as: "view_all"
-  
+  post "collections/filter_results", to: "collections#result", as: "results"
+
   get "collections/matches/:attribute", to: "collections#matches", :as => "match"
   post "strains/add_comment", to: "comments#create", :as => "add_comment"
   get "strains/add_like/:id", to: "strains#add_like", :as => "add_like"

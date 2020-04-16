@@ -1,6 +1,5 @@
 class Note < ApplicationRecord
     belongs_to :collection
-    # belongs_to :user, through: :collection
-
+    validates :rating, :inclusion => -10..10
 
 end

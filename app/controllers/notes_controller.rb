@@ -17,7 +17,6 @@ class NotesController < ApplicationController
         @note = Note.new(note_params)
         if @note.save
             cookies.delete :collection 
-            byebug
             redirect_to collection_path(@note.collection)
         else
             flash[:error_messages] = @note.errors.full_messages  

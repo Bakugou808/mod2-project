@@ -1,3 +1,7 @@
+<% if flash[:error_messages] %>
+    <%= "Rating must be within -10 to 10" %>
+<% end %>
+
 <%= form_for note do |f| %>
     <%= f.label "date" %>
     <%= f.date_select(:date, :order => [:month, :day, :year]) %> 

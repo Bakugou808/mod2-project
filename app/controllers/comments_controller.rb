@@ -1,12 +1,12 @@
 class CommentsController <ApplicationController
 
     def new 
-        byebug
+        
         @comment = Comment.new 
     end
 
     def create 
-        byebug
+        
         @comment = Comment.new(comment_params)
         @strain = Strain.find(comment_params[:strain_id])
         if @comment.save 

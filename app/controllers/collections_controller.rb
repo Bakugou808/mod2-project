@@ -2,19 +2,28 @@ class CollectionsController < ApplicationController
     before_action :set_collection, only: [:show, :edit, :update, :destroy]
     before_action :redirect_user
     before_action :current_user
+
+
     def index
+        
         @strains = Strain.all 
         @collection = Collection.new 
         @collection.notes.build
-            byebug
-        # @genusi = {{:name => "Sativa"}, {:name => "Hybrid"}, {:name => "Indica"}}
-        # @sativas = @user.search_genus("sativa")
-        # @hybrids = @user.search_genus("hybrid")
-        # @indicas = @user.search_genus("indica")
+        @genusi = @user.avail_genus
+        @flavors = @user.flavors 
+        @pos_med_effects = @user.positive_effects
+        
+        if params[:results] 
+            if params[:results].class == Array
+                @results = params[:results].uniq.map{|id| Strain.find(id.to_i)}
+            else 
+                @results = params[:results]
+            end
+        end 
 
     end
 
-  
+
 
     # def new
     #     @collection = Collection.new 
@@ -39,7 +48,7 @@ class CollectionsController < ApplicationController
             @collection.save 
             redirect_to collection_path(@collection)
         else 
-            redirect_to incompleted_path
+            render :incompleted
         end
     end
 
@@ -47,8 +56,6 @@ class CollectionsController < ApplicationController
         
         @strain = Strain.find(@collection.strain_id)
         
-        # @collection = @user.collections.where(strain_id: @strain.id)
-
         cookies[:collection_id] = @collection.id
     end 
 
@@ -75,7 +82,7 @@ class CollectionsController < ApplicationController
 
     def view_all 
         
-        @list = @user.strains 
+        @list = @user.all_strains  
     end 
     def sativas
         @list = @user.search_genus("sativa")
@@ -106,13 +113,9 @@ class CollectionsController < ApplicationController
     end
 
     def result 
-        @genus = params[:genus]
-        @flavors = params[:flavors]
-        @effects = params[:effects]
-
-
-        render :index 
-
+        @results = @user.my_results(params[:genus], params[:flavors], params[:effects])
+        
+        redirect_to homepage_path(results: @results) 
     end 
 
     #------------------------------------------------
@@ -123,6 +126,7 @@ class CollectionsController < ApplicationController
     def set_collection
         @collection = Collection.find(params[:id])
     end 
+
 
     def collection_params
         params.require(:collection).permit(:strain_id, :user_id, notes_attributes: [:date, :rating, :vendor, :note])
@@ -158,7 +162,7 @@ end
         # @users_collection = @user.collections
         # @strains = @user.strains 
         # @flavors = @user.flavors 
-        # @pos_effects = @user.positive_effects
+        # @pos_med_effects = @user.positive_effects
         # @neg_effects = @user.negative_effects
         # # @genusi = {{:name => "Sativa"}, {:name => "Hybrid"}, {:name => "Indica"}}
         # @sativas = @user.search_genus("sativa")

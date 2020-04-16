@@ -1,7 +1,7 @@
 <h1><%= @user.username %>'s Collection</h1>
 <%= link_to "My Profile", user_path(@user) %>
 <br>
-<br>
+<br><h4><%= link_to "View All:", view_all_path %> </h4>
 
 
 <h2>Browse Collection By<h2>
@@ -12,16 +12,25 @@
 <br><h3>Attributes:</h3>
 <br>
 <br><%= link_to "Positive Effects", positive_path %> - <%= link_to "Medicinal Effects", medicinal_path %> - <%= link_to "Flavor", flavor_path %>
-
+<br>
+<br>
+<% if @results %>
+    <% if params[:results].class == Array %>
+        <h2>Results</h2>
+        <%= render partial: 'results', locals: {results: @results} %>
+    <% else %>
+        <h2>Results</h2>
+        <h3><%= @results %></h3>
+    <% end %>
+<% end %>
+<br>
+<br>
+<%= render partial: "search_feature", locals: {genusi: @genusi, flavors: @flavors, effects: @pos_med_effects} %>
 <br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br><h3><%= link_to "View All:", view_all_path %> </h3>
-<br>
-<h3>Add To Collection</h3>
+<h3>Add A New Strain To Collection</h3>
 <br>
 <%= render partial: "double_form", locals: { collection: @collection } %>
 

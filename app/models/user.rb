@@ -4,10 +4,15 @@ class User < ApplicationRecord
     has_many :notes, through: :collections 
     has_many :comments 
     has_many :strains, through: :comments
+    validates :username, presence: true 
+    
 
     has_secure_password
     # allows_nested_attributes_for :strains
 
+    def all_strains 
+        list = self.collections.map{|collection| Strain.find(collection.strain_id)}
+    end 
 
     def flavors
         
@@ -15,10 +20,36 @@ class User < ApplicationRecord
         @strain_flavors = @users_strains.map{|strain| strain.flavors.split(" - ")}.flatten.uniq 
     end 
 
+    def my_results(genus, flavors, effects)
+
+        matches = self.strains.select{|strain| genus.any? {|genus| strain.genus == genus} && flavors.any? {|flavor| strain.flavors.split(" ").include?(flavor)} &&  effects.any? {|effect| strain.effects.split(" ").include?(effect)}}
+        
+        if !matches.empty?
+            matches
+        else
+            "No Matches Found"
+        end
+    end
 
     def positive_effects
         @positive_effects = self.strains.map{|strain| strain.effects.split("||")}.map{|arr| arr[0] + arr[2]}.flatten.join(" ").gsub("Positives:", "-").gsub("Medicinal:", "-").split("-").map{|effect| effect.strip}.reject(&:empty?).uniq
     end
+
+    def search_genus(genus)
+        
+        # strains = self.collections.map{|collection| 
+        #     st = Strain.find(collection.strain_id) 
+        #     st.genus.downcase == "#{genus.downcase}" 
+        # }
+        strains = self.collections.map{|collection| Strain.find(collection.strain_id) if Strain.find(collection.strain_id).genus.downcase == "#{genus.downcase}"}.compact
+        # strains = self.collections.select{|strain| strain.genus.downcase == "#{genus.downcase}"}
+        
+        if !strains.empty?
+            strains 
+        else 
+            "No #{genus.capitalize()}s In Your Collection"
+        end 
+    end 
 
     def matched_attribute(attribute)
         collections = self.collections 
@@ -36,15 +67,11 @@ class User < ApplicationRecord
         self.password_digest = salt + hashed 
     end
 
-    def search_genus(genus)
-        strains = self.strains.select{|strain| strain.genus.downcase == "#{genus.downcase}"}
-        if !strains.empty?
-            strains 
-        else 
-            "No #{genus.capitalize()}s In Your Collection"
-        end 
-    end 
+    def avail_genus 
+        genus = self.strains.map{|strain| strain.genus }.uniq
+    end
 
+   
 
     def authenticate(password)
         

@@ -1,4 +1,4 @@
-<h1>Welcome to the Strain Index</h1> 
+<h1>Paka-Lolo</h1> 
 <br>
 <br>
 <br>
@@ -12,14 +12,41 @@ Search Database:
   </div>  
 <% end %>
 <br>
-<h1>All Strains In Database</h1>
-<br>
-<br>
+
 <ul>
-    <% @strains.each do |strain| %>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Strain List</h2>
+  <p>View All Strains in Database</p>
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse1">Cannabis Strains</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse">
+        <ul class="list-group">
+        <% @strains.each do |strain| %>
         <li>
             <%= link_to strain.name, strain %>
-            <%= strain.id %>
         </li>
-    <% end %>
-</ul>
+        <% end %>
+        </ul>
+        <div class="panel-footer"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+</body>
+</html>
+

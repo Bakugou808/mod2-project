@@ -4,6 +4,33 @@
 <br>
 <br>
 <% if logged_in? %>
+                <body>
+            <div class="container">
+            <h2>Comments</h2>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse3">Comments</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <ul class="list-group">
+                        <% if @comments.count > 0 %>
+                            <% @comments.each do |comment| %>
+                                <%= comment.user.username %> - <%= comment.comment %>
+                            <% end %>
+                        <% end %>   
+                    </ul>
+                    <div class="panel-footer"></div>
+                </div>
+                </div>
+            </div>
+            </div>
+                            
+
+    <br>
+    <br>
     <%= form_for :comment, url: add_comment_path do |f| %>
         <%= f.label "Add Comment" %>
         <%= f.text_area :comment%>
@@ -12,8 +39,10 @@
     
         <%= f.submit %>
     <% end %>
+       
     <br>
-    <%= button_to "Like Strain *** #{@strain.likes}", add_like_path(@strain), method: :get %>
+
+    <%= button_to "#{@strain.likes} Likes", add_like_path(@strain), method: :get %>
     <br>
     <%= button_to "Add To Collections", add_to_collections_path(strain_id: @strain), method: :post %>
 

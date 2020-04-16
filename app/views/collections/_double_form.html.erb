@@ -1,0 +1,27 @@
+<%= form_for collection do |f| %>
+    <%= f.label "Strain Name " %>
+    <%= f.collection_select :strain_id, @strains, :id, :name %>
+    <%= f.hidden_field :user_id, value: @user.id %> 
+   
+<br>
+
+    <%= f.fields_for :notes do |fi| %>
+        <%= fi.label "date" %>
+        <%= fi.date_select(:date, :order => [:month, :day, :year]) %> 
+        <br>
+        <br>
+        <%= fi.label "Rating" %>
+        <%= fi.number_field :rating %>
+        <br>
+        <br>
+        <%= fi.label "Vendor" %>
+        <%= fi.text_field :vendor %>
+        <br>
+        <br>
+        <%= fi.label "Note" %>
+        <%= fi.text_area :note %>
+        <%= fi.hidden_field :collection_id, value: nil %>
+    <% end %>
+
+    <%= f.submit %>
+<% end %>

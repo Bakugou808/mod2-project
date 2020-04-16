@@ -1,0 +1,19 @@
+<% if list.class == Array %>
+    <% list.each do |item| %>
+        <%= link_to item.name, collection_path(item.collections[0].id) %>
+        <br>
+        <%= item.flavors %>
+        <br>
+        <% item.effects.split("||").each do |effect| %>
+            <%= effect %>
+            <br>
+        <% end %>
+        <br>
+    <% end %>
+<% else %>
+    <br>
+    <br>
+    <br>
+
+    <%= list %>
+<% end %>

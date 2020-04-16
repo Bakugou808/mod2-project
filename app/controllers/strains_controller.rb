@@ -1,4 +1,5 @@
 class StrainsController < ApplicationController
+    before_action :current_user
 
     def index 
         @strains = Strain.all
@@ -6,6 +7,7 @@ class StrainsController < ApplicationController
     end
 
     def show
+        
         @strain = Strain.find(params[:id])
     end 
 

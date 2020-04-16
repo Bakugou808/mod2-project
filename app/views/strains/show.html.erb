@@ -1,7 +1,10 @@
 <%= render partial: 'profile', locals: {strain: @strain, effects: @strain.effects.split("||")} %>
 <br>
 <br>
+<br>
+<br>
 <% if logged_in? %>
     <%= button_to "Add To Collections", add_to_collections_path(strain_id: @strain), method: :post %>
-<% end %>
-add nav panel to bottom :back to index :add to collections with conditional rendering
+
+<% end %> 
+

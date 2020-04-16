@@ -1,16 +1,22 @@
 class CollectionsController < ApplicationController
-    before_action :set_collection, only: [:index, :show, :edit, :update, :destroy]
+    before_action :set_collection, only: [:show, :edit, :update, :destroy]
     before_action :redirect_user
+    before_action :current_user
     def index
-         @users_collection = current_user.collections 
+        @strains = Strain.all 
+        @collection = Collection.new 
+        @collection.notes.build
     end
 
-    def new
-        @collection = Collection.new 
-    end 
+  
+
+    # def new
+    #     @collection = Collection.new 
+    # end 
 
     def create 
-        @collection = Collection.new(collection_params)
+        @collection = @user.collections.build(collection_params)
+
         if @collection.save
             redirect_to @collection
         else 
@@ -20,9 +26,8 @@ class CollectionsController < ApplicationController
     end 
 
     def add_to_collection
-        byebug
+        
         @strain = Strain.find(params[:strain_id])
-        @user = current_user 
         @collection = Collection.new(user_id: @user.id, strain_id: @strain.id)
         if @collection
             @collection.save 
@@ -32,20 +37,22 @@ class CollectionsController < ApplicationController
         end
     end
 
-    def incompleted 
-
-    end
-
     def show
+        
         @strain = Strain.find(@collection.strain_id)
-        @user = User.find(@collection.user_id)
+        
+        # @collection = @user.collections.where(strain_id: @strain.id)
+
+        cookies[:collection_id] = @collection.id
     end 
 
     def edit 
+        
+        @notes = @collection.notes 
     end 
 
     def update 
-        if @collection.update(collection_params)
+        if @collection.update(user_id: @user.id, strain_id: collection_params[:strain_id])
             redirect_to @collection
         else 
             flash[:error_messages] = @collection.errors.full_messages 
@@ -55,8 +62,45 @@ class CollectionsController < ApplicationController
 
     def destroy 
         @collection.destroy
-        redirect_to new_collection_path
+        redirect_to homepage_path
+    end
+    
+    #------------------------------------------------
+
+    def view_all 
+        
+        @list = @user.strains 
     end 
+    def sativas
+        @list = @user.search_genus("sativa")
+    end
+
+    def hybrids
+        @list = @user.search_genus("hybrid")
+    end
+
+    def indicas
+        @list = @user.search_genus("indica")
+    end
+
+    def positives
+        @list = @user.positive_effects
+    end
+
+    def matches 
+        @list = @user.matched_attribute(params[:attribute])
+    end 
+
+    def medicinal
+        @list = @user.negative_effects
+    end
+
+    def flavors
+        @list = @user.flavors
+    end
+
+    #------------------------------------------------
+
 
     private 
 
@@ -65,8 +109,51 @@ class CollectionsController < ApplicationController
     end 
 
     def collection_params
-        params.require(:collection).permit(:user_id, :strain_id)
+        params.require(:collection).permit(:strain_id, :user_id, notes_attributes: [:date, :rating, :vendor, :note])
     end
 
+    def incompleted 
+    end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       # @collection.notes.build
+
+        # @users_collection = @user.collections
+        # @strains = @user.strains 
+        # @flavors = @user.flavors 
+        # @pos_effects = @user.positive_effects
+        # @neg_effects = @user.negative_effects
+        # # @genusi = {{:name => "Sativa"}, {:name => "Hybrid"}, {:name => "Indica"}}
+        # @sativas = @user.search_genus("sativa")
+        # @hybrids = @user.search_genus("hybrid")
+        # @indicas = @user.search_genus("indica")
+
+        # <%= form_for @collection do |f| %>
+        #     <%= f.collection_select :genus, Strain.all, :genus, :genus %>
+        #     <%= f.submit %>
+        # <% end %>x
+
+
+
+        # redirect_to collection_results_path

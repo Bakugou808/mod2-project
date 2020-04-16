@@ -2,6 +2,9 @@ class Strain < ApplicationRecord
     has_many :lab_results
     has_many :collections 
     has_many :users, through: :collections
+    has_many :comments
+    has_many :users, through: :comments
+
 
     def self.list_of_strain_names
         api_key = "l7yuhjl"

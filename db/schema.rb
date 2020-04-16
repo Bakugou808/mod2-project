@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_222235) do
+ActiveRecord::Schema.define(version: 2020_04_15_235000) do
 
   create_table "collections", force: :cascade do |t|
     t.integer "user_id"
     t.integer "strain_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "strain_id"
+    t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -32,9 +40,9 @@ ActiveRecord::Schema.define(version: 2020_04_14_222235) do
     t.string "note"
     t.integer "rating"
     t.string "vendor"
-    t.string "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "date"
   end
 
   create_table "strains", force: :cascade do |t|

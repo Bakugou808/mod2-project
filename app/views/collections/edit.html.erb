@@ -3,3 +3,13 @@
 <br>
 <br>
 <%= render partial: 'form', locals: {collection: @collection} %>
+<br>
+<% @notes.each do |note| %>
+    <%= note.date %>
+    <br>
+    <%= note.vendor %>
+    <br>
+    <%= note.note %>
+    <br>
+    <%= link_to "Edit Note", edit_note_path(note) %>
+<% end %>

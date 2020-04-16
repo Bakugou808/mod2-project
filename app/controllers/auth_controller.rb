@@ -6,6 +6,7 @@ class AuthController < ApplicationController
 
     #similar to create -> takes data from our login page and verifies data
     def create 
+        
         @user = User.find_by(username: params[:auth][:username])
         
         if @user
@@ -13,7 +14,7 @@ class AuthController < ApplicationController
             session[:user_id] = @user.id
             redirect_to @user 
         else 
-            redirect_to deny_path
+            render :deny
         end 
             # return head(:forbidden) 
         #     unless @user.authenticate(params[:auth][:password])

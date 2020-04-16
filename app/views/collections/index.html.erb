@@ -1,1 +1,27 @@
-To be made shortly
+<h1><%= @user.username %>'s Collection</h1>
+<%= link_to "My Profile", user_path(@user) %>
+<br>
+<br>
+
+
+<h2>Browse Collection By<h2>
+<br><h3>Genus:</h3>
+<br>
+<br><%= link_to "Sativas", sativas_path %> - <%= link_to "Hybrids", hybrids_path %> - <%= link_to "Indicas", indicas_path %>
+<br>
+<br><h3>Attributes:</h3>
+<br>
+<br><%= link_to "Positive Effects", positive_path %> - <%= link_to "Medicinal Effects", medicinal_path %> - <%= link_to "Flavor", flavor_path %>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><h3><%= link_to "View All:", view_all_path %> </h3>
+<br>
+<h3>Add To Collection</h3>
+<br>
+<%= render partial: "double_form", locals: { collection: @collection } %>
+

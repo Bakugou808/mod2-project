@@ -8,8 +8,21 @@ Rails.application.routes.draw do
   resources :strains, only: [:index, :show]
   root to:"strains#index"
   get "collections/homepage", to: "collections#index", as: "homepage"
-  resources :collections, only: [:new, :create, :show, :edit, :update, :delete]
+  get "collections/results", to: "collections#results", :as => "collection_results"
+  get "collections/sativas", to: "collections#sativas", :as => "sativas"
+  get "collections/hybrids", to: "collections#hybrids", :as => "hybrids"
+  get "collections/indicas", to: "collections#indicas", :as => "indicas"
+  get "collections/positives", to: "collections#positives", :as => "positive"
+  get "collections/medicinal", to: "collections#medicinal", :as => "medicinal"
+  get "collections/flavors", to: "collections#flavors", :as => "flavor"
+  get "collections/view_all", to: "collections#view_all", as: "view_all"
+  
+  get "collections/matches/:attribute", to: "collections#matches", :as => "match"
+
+  
+  resources :collections, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :notes
+  resources :comments, only: [:new, :create, :destroy]
 
   get "/search" => "pages#search", :as => "search_page"
   get "/login", to: "auth#new", :as => "login"
@@ -19,4 +32,7 @@ Rails.application.routes.draw do
   post "/add_to_collections", to: "collections#add_to_collection", :as => "add_to_collections"
   get "/incompleted", to: "collections#incompleted", :as => "incompleted"
   
+
+
+
 end

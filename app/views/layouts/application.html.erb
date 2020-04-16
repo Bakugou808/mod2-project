@@ -7,6 +7,17 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= link_to "Search Index", strains_path %>
+
+    <% if !logged_in? %>
+      <%= link_to "Login", login_path %> / <%= link_to "Signup", signup_path %>
+    <% else %>
+      <%= link_to "Collection Homepage", homepage_path %>
+      <%= button_to "Logout", logout_path, method: :post, data: { confirm: "logout?" } %>
+    <% end %>
+
+    
   </head>
 
   <body>

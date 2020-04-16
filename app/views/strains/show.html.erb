@@ -4,6 +4,17 @@
 <br>
 <br>
 <% if logged_in? %>
+    <%= form_for :comment, url: add_comment_path do |f| %>
+        <%= f.label "Add Comment" %>
+        <%= f.text_area :comment%>
+        <%= f.hidden_field :user_id, value: @user.id %> 
+        <%= f.hidden_field :strain_id, value: @strain.id %> 
+    
+        <%= f.submit %>
+    <% end %>
+    <br>
+    <%= button_to "Like Strain *** #{@strain.likes}", add_like_path(@strain), method: :get %>
+    <br>
     <%= button_to "Add To Collections", add_to_collections_path(strain_id: @strain), method: :post %>
 
 <% end %> 

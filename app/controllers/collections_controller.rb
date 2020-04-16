@@ -6,6 +6,12 @@ class CollectionsController < ApplicationController
         @strains = Strain.all 
         @collection = Collection.new 
         @collection.notes.build
+            byebug
+        # @genusi = {{:name => "Sativa"}, {:name => "Hybrid"}, {:name => "Indica"}}
+        # @sativas = @user.search_genus("sativa")
+        # @hybrids = @user.search_genus("hybrid")
+        # @indicas = @user.search_genus("indica")
+
     end
 
   
@@ -98,6 +104,16 @@ class CollectionsController < ApplicationController
     def flavors
         @list = @user.flavors
     end
+
+    def result 
+        @genus = params[:genus]
+        @flavors = params[:flavors]
+        @effects = params[:effects]
+
+
+        render :index 
+
+    end 
 
     #------------------------------------------------
 

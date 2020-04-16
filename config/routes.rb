@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
 
 
-  resources :strains, only: [:index, :show]
   root to:"strains#index"
   get "collections/homepage", to: "collections#index", as: "homepage"
   get "collections/results", to: "collections#results", :as => "collection_results"
@@ -18,11 +17,12 @@ Rails.application.routes.draw do
   get "collections/view_all", to: "collections#view_all", as: "view_all"
   
   get "collections/matches/:attribute", to: "collections#matches", :as => "match"
-
-  
+  post "strains/add_comment", to: "comments#create", :as => "add_comment"
+  get "strains/add_like/:id", to: "strains#add_like", :as => "add_like"
   resources :collections, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :notes
-  resources :comments, only: [:new, :create, :destroy]
+  
+  resources :strains, only: [:index, :show]
 
   get "/search" => "pages#search", :as => "search_page"
   get "/login", to: "auth#new", :as => "login"

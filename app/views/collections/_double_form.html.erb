@@ -1,4 +1,4 @@
-<%= form_for collection do |f| %>
+<h4><%= form_for collection do |f| %>
     <%= f.label "Strain Name " %>
     <%= f.collection_select :strain_id, @strains, :id, :name %>
     <%= f.hidden_field :user_id, value: @user.id %> 
@@ -22,6 +22,7 @@
         <%= fi.text_area :note %>
         <%= fi.hidden_field :collection_id, value: nil %>
     <% end %>
-
+        <br>
+        <br>
     <%= f.submit %>
-<% end %>
+<% end %></h4>

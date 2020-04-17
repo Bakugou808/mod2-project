@@ -85,7 +85,7 @@
             <h2>Chemical Profile:</h2>
           
                  <div class="dropdown">
-  <button class="dropbtn">View Strains</button>
+  <button class="dropbtn">Terpenes and Cannabinoids</button>
   <div class="dropdown-content">
     <% strain.lab_results[0].terps.sort.each do |terp, val| %>
                     <a href=<%="#{strain_path(strain)}" %>><%= "#{terp.capitalize}: #{val}" %></a>

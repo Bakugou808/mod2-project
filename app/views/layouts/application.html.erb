@@ -11,13 +11,13 @@
       <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.css">
 
 
-    <%= link_to "Search Index", strains_path %>
+    <h4><%= link_to "Search Index", strains_path %></h4>
 
     <% if !logged_in? %>
-      <%= link_to "Login", login_path %> / <%= link_to "Signup", signup_path %>
+      <h4><%= link_to "Login", login_path %> / <%= link_to "Signup", signup_path %></h4>
     <% else %>
-      <%= link_to "Collection Homepage", homepage_path %>
-      <%= button_to "Logout", logout_path, method: :post, data: { confirm: "logout?" } %>
+      <h4><%= link_to "Collection Homepage", homepage_path %>
+      <%= button_to "Logout", logout_path, method: :post, data: { confirm: "logout?" } %></h4>
     <% end %>
 
     

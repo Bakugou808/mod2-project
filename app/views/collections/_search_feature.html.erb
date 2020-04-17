@@ -3,6 +3,7 @@
 <h2>
 
 <%= form_tag results_path do %>
+    <br>
     <%= label_tag "Select Genus" %>
     <br>
     <br>
@@ -25,6 +26,7 @@
     <% effects.each do |effect| %>
         <%= check_box_tag "effects[]", effect %><%= effect %>
     <% end %>
+    <br>
     <br>
     <%= submit_tag "Search Collections" %>
     

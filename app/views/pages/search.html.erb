@@ -1,7 +1,12 @@
+
+
+<br>
+<br>
+<br>
 <h3>Search Result</h3>  
 <% if !@results.empty? %>
     <% @results.each do |result| %> 
-        <%= link_to result.name, result %><br>  
+        <h3><%= link_to result.name, result %><br></h3>  
     <% end %>
 <% else %>
     <h2>No Results Found</h2> <%= button_to "Go Back", strains_path, method: :get %>
@@ -9,4 +14,3 @@
 <br>
 <br>
 <br>
-<%= render 'users/search'%>

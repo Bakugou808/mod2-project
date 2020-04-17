@@ -5,7 +5,6 @@ class CollectionsController < ApplicationController
 
 
     def index
-        
         @strains = Strain.all 
         @collection = Collection.new 
         @collection.notes.build
@@ -41,7 +40,6 @@ class CollectionsController < ApplicationController
     end 
 
     def add_to_collection
-        
         @strain = Strain.find(params[:strain_id])
         @collection = Collection.new(user_id: @user.id, strain_id: @strain.id)
         if @collection
@@ -113,6 +111,7 @@ class CollectionsController < ApplicationController
     end
 
     def result 
+        byebug
         @results = @user.my_results(params[:genus], params[:flavors], params[:effects])
         
         redirect_to homepage_path(results: @results) 

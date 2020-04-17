@@ -3,7 +3,6 @@ class User < ApplicationRecord
     has_many :strains, through: :collections
     has_many :notes, through: :collections 
     has_many :comments 
-    has_many :strains, through: :comments
     validates :username, presence: true 
     
 

@@ -1,5 +1,6 @@
-<h1>Edit User Page</h1>
+<ul><h1>Edit User Page</h1>
 <br>
 <%= render partial: 'form', locals: {user: @user} %>
 <br>
 <%= button_to "Delete Account", @user, method: :delete, data: { confirm: "Delete Account?" } %>
+</ul>

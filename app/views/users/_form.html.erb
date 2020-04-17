@@ -3,7 +3,7 @@
         <%= error %>
     <% end %>
 <% end %>
-
+<ul>
 <%= form_for user do |f| %>
     <%= f.label "Username" %>
     <%= f.text_field :username %>
@@ -17,10 +17,11 @@
     <br>
     <br>
     <%= f.label "Interests" %>
-    <%= f.text_field :interests %>
+    <%= f.text_area :interests, size: "60x4" %>
     <br>
     <%= f.label "Favorites" %>
-    <%= f.text_field :favorites %>
+    <%= f.text_area :favorites, size: "60x4" %>
     <br>
     <%= f.submit %>
 <% end %>
+</ul>

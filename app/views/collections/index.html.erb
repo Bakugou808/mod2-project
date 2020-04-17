@@ -1,8 +1,29 @@
+<style>
+  .jumbotron{
+      background-image: url("https://images.pexels.com/photos/1466335/pexels-photo-1466335.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+      background-size: cover;
+      background-position: center center;
+      min-height: 400px;
+      padding: 5em inherit;
+      left:8px;
+      color:#fff;
+  }
+  
 
+ 
+</style>
+
+<div class="jumbotron">
+  <div class="container">
+  
+    <h1 class="display-4">Paka-Lolo</h1>
+    <p class="lead">A Friendly Source For Curating Your Personal Collection Of Cannabis.</p>
+  </div>
+</div>
 <br>
 <br>
+<ul>
 <h1><%= @user.username %>'s Collection</h1>
-<h5><%= link_to "My Profile", user_path(@user) %></h5>
 
 <br><h4><%= link_to "View All In Collection:", view_all_path %> </h4>
 <br>
@@ -11,31 +32,44 @@
 <br><h3>Genus:</h3>
 <br>
 <br>
-<h3><%= link_to "Sativas", sativas_path %> - <%= link_to "Hybrids", hybrids_path %> - <%= link_to "Indicas", indicas_path %></h3>
+<ul>
+    <h3><%= link_to "Sativas", sativas_path %> - <%= link_to "Hybrids", hybrids_path %> - <%= link_to "Indicas", indicas_path %></h3>
+</ul>
 <br>
 <br><h3>Attributes:</h3>
 <br>
 <br>
-<h3><%= link_to "Positive Effects", positive_path %> - <%= link_to "Medicinal Effects", medicinal_path %> - <%= link_to "Flavor", flavor_path %><h3>
-
+<ul>
+<h3><%= link_to "Positive & Medicinal Effects", positive_path %> - <%= link_to "Negative Effects", medicinal_path %> - <%= link_to "Flavor", flavor_path %><h3>
+</ul>
 
 <% if @results %>
     <% if params[:results].class == Array %>
-        <h2>Results</h2>
-        <%= render partial: 'results', locals: {results: @results} %>
+        <ul><h2>Results</h2></ul>
+        <ul><%= render partial: 'results', locals: {results: @results} %></ul>
     <% else %>
-        <h2>Results</h2>
-        <h3><%= @results %></h3>
+        <ul><h2>Results</h2></ul>
+        <ul><h3><%= @results %></h3></ul>
     <% end %>
 <% end %>
 <br>
+
+
+
+
+
+
+
+
+
 
 <%= render partial: "search_feature", locals: {genusi: @genusi, flavors: @flavors, effects: @pos_med_effects} %>
 <br>
 <br>
 <br>
 <br>
-<h2>Add A New Strain To Collection</h2>
+<ul><h2 id="add_strain">Add A New Strain To Collection</h2></ul>
 <br>
-<%= render partial: "double_form", locals: { collection: @collection } %>
+<ul><%= render partial: "double_form", locals: { collection: @collection } %></ul>
 
+</ul>

@@ -1,5 +1,33 @@
-<h1><%=@user.username%></h1><h3><%= link_to "Edit User", edit_user_path(@user) %>
+<style>
+  .jumbotron{
+      background-image: url("https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1576771046608x868849788210375400%2Fbreaking-up-cannabis.jpg?w=384&h=256&auto=compress&fit=crop&q=100");
+      background-size: cover;
+      background-position: center center;
+      min-height: 400px;
+      padding: 5em inherit;
+      left:8px;
+      color:#fff;
+  }
+</style>
+
+<div class="jumbotron">
+  <div class="container">
+  
+    <h1 class="display-4">Paka-Lolo</h1>
+    <p class="lead">A Friendly Source For Curating Your Personal Collection Of Cannabis.</p>
+  </div>
+</div>
 <br>
+<br>
+<ul>
+<ul><h1><%=@user.username%></h1>
+<br>
+<br>
+<h3><%= link_to "Edit User", edit_user_path(@user) %>
+<br>
+<br>
+<h6><%= button_to "Logout", logout_path, method: :post, data: { confirm: "logout?" } %></h6>
+
 <br>
 <br>
 <h2>Interests: </h2> 
@@ -12,3 +40,5 @@
 <br>
 <br>
 <br>
+</ul>
+</ul>

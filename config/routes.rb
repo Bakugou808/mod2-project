@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
+  get "/search" => "pages#search", :as => "search_page"
   resources :users
   get "/signup", to: "users#new", as: "signup"
 
 
 
   root to:"strains#index"
+  
   get "collections/homepage", to: "collections#index", as: "homepage"
   get "collections/results", to: "collections#results", :as => "collection_results"
   get "collections/sativas", to: "collections#sativas", :as => "sativas"
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
   
   resources :strains, only: [:index, :show]
 
-  get "/search" => "pages#search", :as => "search_page"
+ 
   get "/login", to: "auth#new", :as => "login"
   post "/login", to: "auth#create"
   post "/logout", to: "auth#logout", :as => "logout"

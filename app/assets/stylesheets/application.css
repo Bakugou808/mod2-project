@@ -14,5 +14,26 @@
  *= require_self
 
  */
+ @font-face {
+    font-family: 'nevis';
+    src: url('/assets/fonts/nevis.ttf')
+ }
  @import "bootstrap_sprockets";
  @import "bootstrap";
+ 
+ .jumbotron {
+   background-image: url("/app/assets/images/notebook.jpg");
+   background-size: cover;
+ }
+ 
+ #search_title{
+          color: green
+ }
+
+.checkboxes p{
+    color: rgb(14, 106, 14)
+}
+
+#add_strain {
+    color: orangered
+}

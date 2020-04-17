@@ -41,15 +41,52 @@
 }
 </style>
 
+<style>
+  .jumbotron{
+      background-image: url("https://images.unsplash.com/photo-1549494093-a565e02bcfaa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1190&q=80");
+      background-size: cover;
+      background-position: center center;
+      min-height: 400px;
+      padding: 5em inherit;
+      left:8px;
+      color:#fff;
+  }
+</style>
+
+<div class="jumbotron">
+  <div class="container">
+  
+    <h1 class="display-4">Strain Profile</h1>
+    <p class="lead">"Any fool can know. The point is to understand.”
+― Albert Einstein"</p>
+  </div>
+</div>
 
 <%= render partial: 'profile', locals: {strain: @strain, effects: @strain.effects.split("||")} %>
 <br>
 <br>
+<ul>
+ <%= button_to "#{@strain.likes} Likes", add_like_path(@strain), method: :get %>
+    <br>
+<%= button_to "Add To Collections", add_to_collections_path(strain_id: @strain), method: :post %>
 <br>
 <br>
 <% if logged_in? %>
               
-            <h2>Comments</h2>
+    <%= form_for :comment, url: add_comment_path do |f| %>
+      <h3><%= f.label "Add Comment" %></h3>
+      <br>
+      <%= f.text_area :comment, size: "60x6"%>
+      <%= f.hidden_field :user_id, value: @user.id %> 
+      <%= f.hidden_field :strain_id, value: @strain.id %> 
+  
+      <%= f.submit %>
+    <% end %>  
+    <br>
+<br>
+
+    <br>
+            <h2>Comments</h2><br>
 
             <div class="dropdown">
             <button class="dropbtn">View Comments</button>
@@ -61,24 +98,17 @@
                 <% end %>  
                 </div>
             </div>
+            </ul>
+</ul>
+<ul>
 
 
-    <br>
-    <br>
-    <%= form_for :comment, url: add_comment_path do |f| %>
-        <%= f.label "Add Comment" %>
-        <%= f.text_area :comment%>
-        <%= f.hidden_field :user_id, value: @user.id %> 
-        <%= f.hidden_field :strain_id, value: @strain.id %> 
+
     
-        <%= f.submit %>
-    <% end %>
-       
-    <br>
-
-    <%= button_to "#{@strain.likes} Likes", add_like_path(@strain), method: :get %>
-    <br>
-    <%= button_to "Add To Collections", add_to_collections_path(strain_id: @strain), method: :post %>
 
 <% end %> 
+</ul>
+
+<br>
+<br>
 

@@ -8,17 +8,47 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     
-      <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.css">
+      <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.css">
 
 
-    <h4><%= link_to "Search Index", strains_path %></h4>
 
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <%= image_tag("weed.png", size: "39x33", class: "img-responsive", id: "navbar-logo") %>
+    Paka-Lolo
+    <%= image_tag("weed.png", size: "39x33", class: "img-responsive", id: "navbar-logo") %>
+  </a>
+  <form class="form-inline">
     <% if !logged_in? %>
-      <h4><%= link_to "Login", login_path %> / <%= link_to "Signup", signup_path %></h4>
+      <a class="btn btn-outline-primary" href="/login" role="button">
+      Login
+      </a>
+      <div style="padding-left: 10px;">
+        <a class="btn btn-outline-success" href="/signup" role="button">
+        Sign Up
+        </a>
+      <div style="padding-right: 10px;">
+        <a class="btn btn-outline-success" href="/" role="button">
+        Search Index
+        </a>
     <% else %>
-      <h4><%= link_to "Collection Homepage", homepage_path %>
-      <%= button_to "Logout", logout_path, method: :post, data: { confirm: "logout?" } %></h4>
+       <a class="btn btn-outline-primary" href="/collections/homepage" role="button">
+      Collection Homepage
+      </a>
+      <div style="padding-right: 10px;">
+        <a class="btn btn-outline-success" href="/" role="button">
+        Search Index
+        </a>
+        <a class="btn btn-outline-success" href=<%="/users/#{current_user.id}"%> role="button">
+        My Profile
+        </a>
+
     <% end %>
+    </div>
+  </form>
+</nav>
+
+
 
     
   </head>
@@ -26,4 +56,40 @@
   <body>
     <%= yield %>
   </body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer>Icons made by <a href="https://www.flaticon.com/authors/photo3idea-studio" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></footer>
+  Photo by Esteban Lopez on Unsplash
+  Photo by Stefan Bookblock on Unsplash
+  Photo by Itay Kabalo on Unsplash
+  Image by Freeman LaFleur from Chronic Stock
+
 </html>

@@ -1,18 +1,47 @@
+<style>
+  .jumbotron{
+      background-image: url("https://images.pexels.com/photos/1466335/pexels-photo-1466335.jpeg?cs=srgb&dl=close-up-photo-of-kush-on-glass-container-1466335.jpg&fm=jpg");
+      background-size: cover;
+      background-position: center center;
+      min-height: 400px;
+      padding: 5em inherit;
+      left:8px;
+      color:#fff;
+  }
+</style>
+
+<div class="jumbotron">
+  <div class="container">
+  
+    <h1 class="display-4">Paka-Lolo</h1>
+    <p class="lead">A Friendly Source For Curating Your Personal Collection Of Cannabis.</p>
+  </div>
+</div>
+
+<ul>
+<ul>
+<br>
+<br>
 <h2><%= link_to @user.username, @user %>
 <br>
 <br>
 <br>
 <h6>
-<%= button_to "Add New Note", new_note_path(collection_id: @collection), method: :get %>
+
 <%= button_to "Edit Collection", edit_collection_path(@collection), method: :get %>
 <%= button_to "Delete Collection", @collection, method: :delete, data: { confirm: "Delete Collection?" } %>
 </h6>
 <br>
 <%= render partial: '/strains/profile', locals:  {strain: @strain, effects: @strain.effects.split("||")}%>
 
-
+<br>
+<br>
+<ul><ul><%= button_to "Add New Note", new_note_path(collection_id: @collection), method: :get %></ul></ul>
+<br>
+<br>
 <% if !@collection.notes.empty? %>
     <%= render partial: 'notes/notes', locals: {collection: @collection} %>
 <% end %>
-
+</ul>
+</ul>
 

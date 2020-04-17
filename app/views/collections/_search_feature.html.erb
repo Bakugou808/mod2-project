@@ -1,10 +1,15 @@
-<h2>Filter Through Collection<h2>
+<br>
+<br>
+
+
+<h2 id="search_title">Filter Through Collection<h2>
 
 <h2>
-
+<ul>
+<div class="checkboxes">
 <%= form_tag results_path do %>
     <br>
-    <%= label_tag "Select Genus" %>
+    <p><%= label_tag "Select Genus" %></p>
     <br>
     <br>
     <% genusi.each do |genus| %>
@@ -12,15 +17,19 @@
     <% end %>
     <br>
     <br>
-    <%= label_tag "Select Flavors" %>
+    
+    <br>
+    <p><%= label_tag "Select Flavors" %></p>
     <br>
     <br>
     <% flavors.each do |flavor| %>
         <%= check_box_tag "flavors[]", flavor %><%= flavor %>
     <% end %>
     <br>
+ 
     <br>
-    <%= label_tag "Select Effects" %>
+    <br>
+    <p><%= label_tag "Select Positive/Medicinal Effects" %></p>
     <br>
     <br>
     <% effects.each do |effect| %>
@@ -28,8 +37,10 @@
     <% end %>
     <br>
     <br>
+    <br>
     <%= submit_tag "Search Collections" %>
     
 <% end %>
-
+</div>
 </h2>
+</ul>

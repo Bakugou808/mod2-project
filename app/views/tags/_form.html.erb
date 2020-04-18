@@ -1,0 +1,24 @@
+<% if flash[:error_messages] %>
+    <%= "Rating must be within -10 to 10" %>
+<% end %>
+<ul>
+<%= form_for note do |f| %>
+    <%= f.label "date" %>
+    <%= f.date_select(:date, :order => [:month, :day, :year]) %> 
+    <br>
+    <br>
+    <%= f.label "Rating" %>
+    <%= f.number_field :rating %>
+    <br>
+    <br>
+    <%= f.label "Vendor" %>
+    <%= f.text_field :vendor %>
+    <br>
+    <br>
+    <%= f.hidden_field :collection_id, value: collection_id %> 
+    
+    <%= f.label "Note" %>
+    <%= f.text_area :note, size: "60x6" %>
+    <%= f.submit %>
+<% end %>
+</ul>

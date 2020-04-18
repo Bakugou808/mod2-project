@@ -111,7 +111,7 @@ class CollectionsController < ApplicationController
     end
 
     def result 
-        byebug
+        
         @results = @user.my_results(params[:genus], params[:flavors], params[:effects])
         
         redirect_to homepage_path(results: @results) 

@@ -2,7 +2,9 @@ class Collection < ApplicationRecord
     belongs_to :user
     belongs_to :strain 
     has_many :notes 
-    accepts_nested_attributes_for :notes
+    has_many :tags
+    accepts_nested_attributes_for :notes, :tags
+    # accepts_nested_attributes_for :tags 
 
 
     # def notes_attributes=(note)

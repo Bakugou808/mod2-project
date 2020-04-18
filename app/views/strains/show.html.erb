@@ -85,20 +85,17 @@
     <% end %>  
     <br>
 <br>
-
+      <h2>Comments</h2><br>
     <br>
-            <h2>Comments</h2><br>
-
-            <div class="dropdown">
-            <button class="dropbtn">View Comments</button>
-            <div class="dropdown-content">
-                <% if @comments.count > 0 %>
-                            <% @comments.each do |comment| %>
-                                <a href=<%="#{strain_path(@strain)}" %>><%= comment.user.username %> - <%= comment.comment %></a>
-                            <% end %>
-                <% end %>  
-                </div>
-            </div>
+    <% if @comments.count > 0 %>
+              <% @comments.each do |comment| %>
+                  <h4><%= comment.user.username %>
+                  <p id="comments"><br> - <%= comment.comment %><h4></p>
+                  <br>
+                  <br>
+              <% end %>
+    <% end %>  
+           
             </ul>
 </ul>
 <ul>

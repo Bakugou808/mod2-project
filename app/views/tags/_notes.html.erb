@@ -1,0 +1,10 @@
+<ul><% collection.notes.each do |note| %>
+    <ul>
+        <h3>Vendor: <%= note.vendor %><br>
+        Rating: <%= note.rating %><br>
+        Date: <%= note.date %><br>
+        </h3>
+        <h2><%= link_to "Note: ", note_path(note) %><%= note.note %><br><h2>
+    </ul>    
+<% end %>
+</ul>

@@ -1,6 +1,6 @@
 <% results.each do |strain| %>
     <%= render partial: 'strains/profile', locals: {strain: strain, effects: strain.effects.split("||")} %>
     <% strain.collections.each do |collection| %>
-        <%= render partial: 'notes/note', locals: {collection: collection} %>
+        <%= render partial: 'notes/notes', locals: {collection: collection} %>
     <% end %>
-<% end %>
+<% end %> 

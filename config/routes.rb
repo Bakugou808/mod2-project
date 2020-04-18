@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tags
   get "/search" => "pages#search", :as => "search_page"
   resources :users
   get "/signup", to: "users#new", as: "signup"
